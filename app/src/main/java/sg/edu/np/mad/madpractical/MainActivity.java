@@ -2,11 +2,13 @@ package sg.edu.np.mad.madpractical;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     User u;
@@ -15,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("Debug", "create");
+
+        Intent rec = getIntent();
+        int value = rec.getIntExtra("id",0);
 
         u = new User();
         u.name = "MAD";
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onFollowClick(View v) {
         u.followed = !u.followed;
+        if(u.followed)
+            Toast.makeText(this, "Followed", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this,"Unfollowed", Toast.LENGTH_SHORT).show();
         setFollowBtn();
     }
 
